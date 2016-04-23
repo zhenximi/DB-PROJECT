@@ -322,4 +322,5 @@ public class ApplicationController {
         return html;
         //return Results.redirect(Globals.PathProfile);
     }
+
 }

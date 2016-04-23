@@ -312,12 +312,18 @@ public class ApplicationController {
 
         html.render("friends", mutualFriends);
 
-        actualUser = userTableDao.getUserFromSession(context);
+        //actualUser = userTableDao.getUserFromSession(context);
 
-        UserTable targetUser = userTableDao.getUserFromUsername(keyword);
+        boolean alert = false;
 
-
-        html.render("target", targetUser);
+        List<UserTable>  userResult = userTableDao.getUserListFromKeyword(keyword);
+        /*if(userResult != null && userResult.size() != 0) {
+            alert = true;
+            html.render("userResult", userResult);
+        } else {
+            html.render("alert", alert);
+        }*/
+        html.render("userResult", userResult);
 
         return html;
         //return Results.redirect(Globals.PathProfile);

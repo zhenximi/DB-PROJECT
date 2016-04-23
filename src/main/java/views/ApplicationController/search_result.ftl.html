@@ -2,19 +2,24 @@
     <@layout.myLayout "Home page">
 
 
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <div class="media">
-                    <div class="media-body media-middle">
-                        <h4>${target.username}</h4>
-                        <a href="/profile/view/${target.username}">
-                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">
-                        </a>
+    <div class="panel panel-primary" style="padding: 5%;">
+            <#list userResult as user>
+                <div class="panel-body" style="display: inline-block; padding: 10px; border: dotted 1px black;">
+                    <div class="media">
+                        <div class="media-middle" style="text-align: center;">
+                            <h4>${user.full_name}</h4>
+                            <a href="/profile/view/${user.username}">
+                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-
+                <#else>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Oops!</strong> I don't know this guy. You could invite another Techie to join us!
+                </div>
+            </#list>
+    </div>
 
 </@layout.myLayout>

@@ -291,18 +291,36 @@ public class ApplicationController {
         return html;
     }
     @FilterWith(LoginFilter.class)
-    public Result search_result(@PathParam("userName") String keyword, Context context) {
+    public Result search_result(@Param("userName") String keyword, Context context) {
         // Initial declarations
         Result html = Results.html();
 
+
+        EntityManager em = EntityManagerProvider.get();
+        Session session = context.getSession();
+
+        // Temporal vars
+        // -------------
         UserTable actualUser = userTableDao.getUserFromSession(context);
+
+        // Get mutual friend list
+        List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        mutualFriends.add(actualUser);
+
+        // HTML Rendering stuff
+        html.render("user", actualUser);
+
+        html.render("friends", mutualFriends);
+
+        actualUser = userTableDao.getUserFromSession(context);
 
         UserTable targetUser = userTableDao.getUserFromUsername(keyword);
 
-        html.render("user", actualUser);
+
         html.render("target", targetUser);
 
         return html;
         //return Results.redirect(Globals.PathProfile);
     }
+
 }

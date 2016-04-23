@@ -1,0 +1,33 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "Home page">
+
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <form method="POST" action="/post/create">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="What's on your mind?" name="content">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></button>
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-body media-middle">
+                        <h4>${target.username}</h4>
+                        <a href="/profile/view/${target.username}">
+                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+</@layout.myLayout>

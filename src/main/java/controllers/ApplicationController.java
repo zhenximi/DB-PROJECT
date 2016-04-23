@@ -307,23 +307,18 @@ public class ApplicationController {
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         mutualFriends.add(actualUser);
 
-        // HTML Rendering stuff
-        html.render("user", actualUser);
 
-        html.render("friends", mutualFriends);
-
-        //actualUser = userTableDao.getUserFromSession(context);
-
-        boolean alert = false;
 
         List<UserTable>  userResult = userTableDao.getUserListFromKeyword(keyword);
-        /*if(userResult != null && userResult.size() != 0) {
-            alert = true;
-            html.render("userResult", userResult);
-        } else {
-            html.render("alert", alert);
-        }*/
+
+
+        List<Post> postResult = postDao.getPostFromKeyword(keyword);
+
+        // HTML Rendering stuff
+        html.render("user", actualUser);
+        html.render("friends", mutualFriends);
         html.render("userResult", userResult);
+        html.render("postResult", postResult);
 
         return html;
         //return Results.redirect(Globals.PathProfile);

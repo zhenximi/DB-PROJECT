@@ -3,23 +3,51 @@
 
 
     <div class="panel panel-primary" style="padding: 5%;">
-            <#list userResult as user>
-                <div class="panel-body" style="display: inline-block; padding: 10px; border: dotted 1px black;">
-                    <div class="media">
-                        <div class="media-middle" style="text-align: center;">
-                            <h4>${user.full_name}</h4>
-                            <a href="/profile/view/${user.username}">
-                                <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">
-                            </a>
-                        </div>
+        <#list userResult as user>
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: center;">
+                        <h4>${user.full_name}</h4>
+                        <a href="/profile/view/${user.username}">
+                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png"
+                                 alt="Profile picture">
+                        </a>
                     </div>
                 </div>
-                <#else>
+            </div>
+            <#else>
                 <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <strong>Oops!</strong> I don't know this guy. You could invite another Techie to join us!
                 </div>
-            </#list>
+        </#list>
     </div>
+
+    <#list postResult as post>
+        <div class="panel panel-primary" style="padding: 1%;">
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: left;">
+                        <h4>${post.content}</h4>
+                        <p>${post.timestamp}</p>
+                        <!--<a href="/profile/view/${user.username}">-->
+                        <!--<img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">-->
+                        <!--</a>-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <#else>
+            <div class="panel panel-primary" style="padding: 1%;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Oops!</strong> I don't know this guy. You could invite another Techie to join us!
+                </div>
+            </div>
+    </#list>
+
 
 </@layout.myLayout>

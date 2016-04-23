@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import com.google.inject.persist.Transactional;
 import models.Post;
 import models.UserTable;
 import models.UserTable;
@@ -31,6 +33,16 @@ public class PostDao {
         Query q = em.createQuery(strQuery);
         result = (List<Post>) q.getResultList();
         
+        return result;
+    }
+    @Transactional
+    public List<Post> getPostFromKeyword(String content) {
+        List<Post> result = new ArrayList<>();
+        EntityManager em = EntityManagerProvider.get();
+        Query q = em.createQuery("SELECT x FROM Post x WHERE content LIKE :keyword");
+        q.setParameter("keyword", "%" + content + "%");
+        result = (List<Post>) q.getResultList();
+        //System.out.println("+++++++++++++++++++++++++++search result: " + result.size());
         return result;
     }
 }

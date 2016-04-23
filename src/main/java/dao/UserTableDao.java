@@ -9,6 +9,8 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 import etc.Globals;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import models.UserTable;
@@ -63,5 +65,15 @@ public class UserTableDao {
             return result.get(0);
         }
         return null;
+    }
+    @Transactional
+    public List<UserTable> getUserListFromKeyword(String full_name) {
+        List<UserTable> result = new ArrayList<>();
+        EntityManager em = EntityManagerProvider.get();
+        Query q = em.createQuery("SELECT x FROM UserTable x WHERE full_name LIKE :keyword");
+        q.setParameter("keyword", "%" + full_name + "%");
+        result = (List<UserTable>) q.getResultList();
+        //System.out.println("+++++++++++++++++++++++++++search result: " + result.size());
+        return result;
     }
 }

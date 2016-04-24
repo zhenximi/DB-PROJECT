@@ -59,6 +59,7 @@ public class ApplicationController {
     @Inject RelationshipDao relationshipDao;
     @Inject PostDao postDao;
     @Inject CommentDao commentDao;
+    @Inject MailController mailController;
 
     @FilterWith(LoginFilter.class)
     public Result index(Context context) {
@@ -195,6 +196,7 @@ public class ApplicationController {
 
         if(relation == null) {
             relationshipDao.createNewRelation(actualUser, target);
+            mailController.sendMail();
             return Results.redirect(Globals.PathProfileView + target.getUsername());
         }
         return Results.redirect(Globals.PathError);

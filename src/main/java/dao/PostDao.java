@@ -36,6 +36,18 @@ public class PostDao {
         return result;
     }
     @Transactional
+    public Post getPostFromSearchResult(Long post_id) {
+        List<Post> result = new ArrayList<>();
+        EntityManager em = EntityManagerProvider.get();
+        Query q = em.createQuery("SELECT x FROM Post x WHERE post_id =:postid");
+        q.setParameter("postid", post_id);
+        result = (List<Post>) q.getResultList();
+        if(result.size() ==1) {
+            return result.get(0);
+        }
+        return null;
+    }
+    @Transactional
     public List<Post> getPostFromKeyword(String content) {
         List<Post> result = new ArrayList<>();
         EntityManager em = EntityManagerProvider.get();

@@ -49,13 +49,15 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/friends/accept/{relid}").with(ApplicationController.class, "friend_accept");
         router.GET().route("/friends/reject/{relid}").with(ApplicationController.class, "friend_reject");
         //router.GET().route("/friends/block/{relid}").with(ApplicationController.class, "friend_reject");
+        router.POST().route("/search").with(ApplicationController.class, "search_result");   //search
+        router.GET().route("/profile/post_view/{postid}").with(ApplicationController.class, "post_view");
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////
         router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
         router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
-        router.POST().route("/search").with(ApplicationController.class, "search_result");   //search
+
 
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page

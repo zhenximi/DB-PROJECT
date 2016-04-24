@@ -1,0 +1,18 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "Home page">
+
+
+    <div class="panel panel-primary" style="padding: 1%;">
+        <div class="panel-body" style="display: inline-block; padding: 10px;">
+            <div class="media">
+                <div class="media-middle" style="text-align: left;">
+                        <h4>${post.content}</h4>
+                    </a>
+                    <p>${post.timestamp}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</@layout.myLayout>

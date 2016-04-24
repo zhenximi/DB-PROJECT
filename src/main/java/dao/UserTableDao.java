@@ -76,4 +76,17 @@ public class UserTableDao {
         //System.out.println("+++++++++++++++++++++++++++search result: " + result.size());
         return result;
     }
+    @Transactional
+    public UserTable getUserFromUserid(Long userid) {
+        EntityManager em = EntityManagerProvider.get();
+
+        Query q = em.createQuery("SELECT x FROM UserTable x WHERE id = :target");
+        q.setParameter("target", userid);
+        List<UserTable> result = q.getResultList();
+
+        if(result.size() == 1) {
+            return result.get(0);
+        }
+        return null;
+    }
 }

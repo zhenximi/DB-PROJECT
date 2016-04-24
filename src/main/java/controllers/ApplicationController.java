@@ -49,8 +49,10 @@ import ninja.FilterWith;
 import ninja.params.Param;
 import ninja.params.PathParam;
 import ninja.session.Session;
+import ninja.uploads.DiskFileItemProvider;
+import ninja.uploads.FileProvider;
 
-
+@FileProvider(DiskFileItemProvider.class)
 @Singleton
 public class ApplicationController {
     @Inject
@@ -259,12 +261,12 @@ public class ApplicationController {
     }
 
     @FilterWith(LoginFilter.class)
-    public Result profile_view(@PathParam("profile") String profile, Context context) {
+    public Result profile_view(@PathParam("profile") Long profile, Context context) {
         // Initial declarations
         Result html = Results.html();
 
        UserTable actualUser = userTableDao.getUserFromSession(context);
-       UserTable targetUser = userTableDao.getUserFromUsername(profile);
+       UserTable targetUser = userTableDao.getUserFromUserid(profile);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
 
@@ -300,7 +302,7 @@ public class ApplicationController {
         return html;
     }
     @FilterWith(LoginFilter.class)
-    public Result search_result(@Param("userName") String keyword, Context context) {
+    public Result search_result(@Param("keyword") String keyword, Context context) {
         // Initial declarations
         Result html = Results.html();
 

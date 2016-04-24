@@ -323,5 +323,23 @@ public class ApplicationController {
         return html;
         //return Results.redirect(Globals.PathProfile);
     }
+    @FilterWith(LoginFilter.class)
+    public Result post_view(@PathParam("postid") Long postid, Context context) {
+        // Initial declarations
+        Result html = Results.html();
+
+        UserTable actualUser = userTableDao.getUserFromSession(context);
+        //UserTable targetUser = userTableDao.getUserFromUsername(post);
+        List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
+        Post post = postDao.getPostFromSearchResult(postid);
+
+
+        html.render("user", actualUser);
+        html.render("post", post);
+        html.render("friends", mutualFriends);
+
+        return html;
+    }
 
 }

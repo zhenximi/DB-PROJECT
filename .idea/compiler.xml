@@ -25,7 +25,7 @@
         <module name="Techies" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7">
+    <bytecodeTargetLevel>
       <module name="Techies" target="1.7" />
     </bytecodeTargetLevel>
   </component>

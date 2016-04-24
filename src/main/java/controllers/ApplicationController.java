@@ -123,7 +123,7 @@ public class ApplicationController {
     }
 
     @Transactional
-    public Result register(@Param("email") String pEmail,
+    /*public Result register(@Param("email") String pEmail,
                            @Param("secret") String pPassword,
                            @Param("fullname") String pFullName,
                            @Param("username") String pUsername,
@@ -135,7 +135,33 @@ public class ApplicationController {
         em.persist(user);
 
         return Results.redirect(Globals.PathRoot);
+    } */
+    //redirect to news after register
+    public Result register(@Param("email") String pEmail,
+                           @Param("secret") String pPassword,
+                           @Param("fullname") String pFullName,
+                           @Param("username") String pUsername,
+                           Context context) {
+        Session session = context.getSession();
+        EntityManager em = EntityManagerProvider.get();
+
+        UserTable user = new UserTable(pUsername, pEmail, pPassword, pFullName);
+        em.persist(user);
+
+        UserTable canLogin = userTableDao.canLogin(pEmail, pPassword);
+
+        if (canLogin != null) {
+            User_session uSession = new User_session(canLogin);
+            em.persist(uSession);
+            context.getSession().put(Globals.CookieSession, uSession.getId());
+            return Results.redirect(Globals.PathMainPage);
+        }
+        else{
+            //return Results.redirect(Globals.PathMainPage);
+            return Results.html();
+        }
     }
+
 
     @Transactional
     @FilterWith(LoginFilter.class)

@@ -196,10 +196,15 @@
             <version>${ninja.version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>
-            <groupId>SocialNetwork</groupId>
-            <artifactId>SocialNetwork</artifactId>
-            <version>0.1</version>
-        </dependency>-->
+        <dependency>
+            <groupId>Techies.Techies</groupId>
+            <artifactId>Techies</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!--        <dependency>
+                    <groupId>SocialNetwork</groupId>
+                    <artifactId>SocialNetwork</artifactId>
+                    <version>0.1</version>
+                </dependency>-->
     </dependencies>
 </project>

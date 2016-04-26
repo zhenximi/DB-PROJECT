@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - xc761@pdc-amd01.poly.edu" uuid="5eddd1b8-42d4-4947-b2e8-6cf740ae222f">
-      <secret-storage>master_key</secret-storage>
-      <user-name>xc761</user-name>
-    </data-source>
-  </component>
-</project>

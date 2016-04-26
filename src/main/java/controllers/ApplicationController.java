@@ -47,8 +47,10 @@ import ninja.FilterWith;
 import ninja.params.Param;
 import ninja.params.PathParam;
 import ninja.session.Session;
+import ninja.uploads.DiskFileItemProvider;
+import ninja.uploads.FileProvider;
 
-
+@FileProvider(DiskFileItemProvider.class)
 @Singleton
 public class ApplicationController {
     @Inject
@@ -58,6 +60,7 @@ public class ApplicationController {
     @Inject PostDao postDao;
     @Inject CommentDao commentDao;
     @Inject DiaryDao diaryDao;
+    @Inject MailController mailController;
 
     @FilterWith(LoginFilter.class)
     public Result index(Context context) {
@@ -125,7 +128,7 @@ public class ApplicationController {
     }
 
     @Transactional
-    public Result register(@Param("email") String pEmail,
+    /*public Result register(@Param("email") String pEmail,
                            @Param("secret") String pPassword,
                            @Param("fullname") String pFullName,
                            @Param("username") String pUsername,
@@ -135,9 +138,42 @@ public class ApplicationController {
 
        UserTable user = new UserTable(pUsername, pEmail, pPassword, pFullName);
         em.persist(user);
+        UserTable canLogin = userTableDao.canLogin(pEmail, pPassword);
 
+        if (canLogin != null) {
+
+            User_session uSession = new User_session(canLogin);
+            em.persist(uSession);
+            context.getSession().put(Globals.CookieSession, uSession.getId());
+            return Results.redirect(Globals.PathMainPage);}
         return Results.redirect(Globals.PathRoot);
+    } */
+    //redirect to news after register
+    public Result register(@Param("email") String pEmail,
+                           @Param("secret") String pPassword,
+                           @Param("fullname") String pFullName,
+                           @Param("username") String pUsername,
+                           Context context) {
+        Session session = context.getSession();
+        EntityManager em = EntityManagerProvider.get();
+
+        UserTable user = new UserTable(pUsername, pEmail, pPassword, pFullName);
+        em.persist(user);
+
+        UserTable canLogin = userTableDao.canLogin(pEmail, pPassword);
+
+        if (canLogin != null) {
+            User_session uSession = new User_session(canLogin);
+            em.persist(uSession);
+            context.getSession().put(Globals.CookieSession, uSession.getId());
+            return Results.redirect(Globals.PathMainPage);
+        }
+        else{
+            //return Results.redirect(Globals.PathMainPage);
+            return Results.html();
+        }
     }
+
 
     @Transactional
     @FilterWith(LoginFilter.class)
@@ -197,6 +233,7 @@ public class ApplicationController {
 
         if(relation == null) {
             relationshipDao.createNewRelation(actualUser, target);
+            mailController.sendMail();
             return Results.redirect(Globals.PathProfileView + target.getUsername());
         }
         return Results.redirect(Globals.PathError);
@@ -252,12 +289,12 @@ public class ApplicationController {
     }
 
     @FilterWith(LoginFilter.class)
-    public Result profile_view(@PathParam("profile") String profile, Context context) {
+    public Result profile_view(@PathParam("profile") Long profile, Context context) {
         // Initial declarations
         Result html = Results.html();
 
        UserTable actualUser = userTableDao.getUserFromSession(context);
-       UserTable targetUser = userTableDao.getUserFromUsername(profile);
+       UserTable targetUser = userTableDao.getUserFromUserid(profile);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
 
@@ -293,7 +330,7 @@ public class ApplicationController {
         return html;
     }
     @FilterWith(LoginFilter.class)
-    public Result search_result(@Param("userName") String keyword, Context context) {
+    public Result search_result(@Param("keyword") String keyword, Context context) {
         // Initial declarations
         Result html = Results.html();
 

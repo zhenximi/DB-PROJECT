@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="903054441">
+    <data-source source="LOCAL" name="PostgreSQL - xc761@pdc-amd01.poly.edu" uuid="5da0d60f-fda0-4773-9744-4d030cd81b13">
   <component name="DataSourceManagerImpl" format="xml" hash="3016362514">
     <data-source source="LOCAL" name="PostgreSQL - xc761@pdc-amd01.poly.edu" uuid="5eddd1b8-42d4-4947-b2e8-6cf740ae222f">
       <driver-ref>postgresql</driver-ref>

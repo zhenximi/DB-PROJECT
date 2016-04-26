@@ -17,6 +17,7 @@
 package conf;
 
 
+import controllers.UploadController;
 import ninja.AssetsController;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
@@ -50,7 +51,8 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/friends/reject/{relid}").with(ApplicationController.class, "friend_reject");
         //router.GET().route("/friends/block/{relid}").with(ApplicationController.class, "friend_reject");
         router.POST().route("/search").with(ApplicationController.class, "search_result");   //search
-        router.GET().route("/profile/post_view/{postid}").with(ApplicationController.class, "post_view");
+        router.POST().route("/uploadFinish").with(UploadController.class, "uploadFinish");   //upload picture
+        router.GET().route("/profile/post_view/{postid}").with(ApplicationController.class, "post_view");//show the post in the search result
 
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)

@@ -48,5 +48,22 @@
             </div>
     </#list>
 
+    <#list diary as diary>
+        <div class="panel panel-primary" style="padding: 5%;">
+
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: center;">
+                        <a href="/diary/${diary.id}">
+                            <h3>${diary.title}</h3>
+                        </a>
+                        <h4>${diary.content}</h4>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </#list>
 
 </@layout.myLayout>

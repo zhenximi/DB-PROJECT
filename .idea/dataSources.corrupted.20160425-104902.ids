@@ -10,8 +10,13 @@
       <schema id="2" parent="1" name="public">
         <object-id>2200</object-id>
         <comment>standard public schema</comment>
+<<<<<<< HEAD
         <introspection-state-number>18392</introspection-state-number>
         <introspection-timestamp>2016-04-24.19:14:17.319</introspection-timestamp>
+=======
+        <introspection-state-number>19293</introspection-state-number>
+        <introspection-timestamp>2016-04-25.18:35:49.753</introspection-timestamp>
+>>>>>>> 112010fb09a177b24ad2429dea684651732dfa5d
       </schema>
       <sequence id="3" parent="2" name="comment_comment_id_seq">
         <object-id>44170</object-id>
@@ -43,7 +48,11 @@
       </table>
       <table id="10" parent="2" name="diary">
         <object-id>49676</object-id>
+<<<<<<< HEAD
         <state-number>18386</state-number>
+=======
+        <state-number>19293</state-number>
+>>>>>>> 112010fb09a177b24ad2429dea684651732dfa5d
       </table>
       <table id="11" parent="2" name="diarycomment">
         <object-id>49689</object-id>
@@ -67,7 +76,7 @@
       </table>
       <table id="16" parent="2" name="profile">
         <object-id>33656</object-id>
-        <state-number>8967</state-number>
+        <state-number>19006</state-number>
       </table>
       <table id="17" parent="2" name="relationship">
         <object-id>44141</object-id>
@@ -199,7 +208,6 @@
       </key>
       <foreign-key id="43" parent="9" name="comments_userid_fkey">
         <columns>userid</columns>
-        <ref-key>~.userinfo.userinfo_pkey</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -218,6 +226,7 @@ media</columns>
         <state-number>18384</state-number>
         <mandatory>1</mandatory>
         <data-type>bigint</data-type>
+<<<<<<< HEAD
       </column>
       <column id="47" parent="10" name="user_id">
         <state-number>18384</state-number>
@@ -294,6 +303,85 @@ media</columns>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
+=======
+      </column>
+      <column id="47" parent="10" name="user_id">
+        <state-number>18384</state-number>
+        <data-type>bigint</data-type>
+      </column>
+      <column id="48" parent="10" name="title">
+        <state-number>18384</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="49" parent="10" name="content">
+        <state-number>18384</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="50" parent="10" name="timestamp">
+        <state-number>19293</state-number>
+        <data-type>timestamp with time zone</data-type>
+      </column>
+      <index id="51" parent="10" name="diary_pkey">
+        <object-id>49682</object-id>
+        <columns>diary_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="52" parent="10" name="diary_pkey">
+        <columns>diary_id</columns>
+        <underlying-index>diary_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="53" parent="10" name="diary_user_id_fkey">
+        <columns>user_id</columns>
+        <ref-key>~.usertable.usertable_pkey</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="54" parent="11" name="diarycomment_id">
+        <state-number>18386</state-number>
+        <mandatory>1</mandatory>
+        <data-type>bigint</data-type>
+      </column>
+      <column id="55" parent="11" name="diary_id">
+        <state-number>18386</state-number>
+        <data-type>bigint</data-type>
+      </column>
+      <column id="56" parent="11" name="user_id">
+        <state-number>18386</state-number>
+        <data-type>bigint</data-type>
+      </column>
+      <column id="57" parent="11" name="content">
+        <state-number>18386</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="58" parent="11" name="timestamp">
+        <state-number>18386</state-number>
+        <data-type>timestamp</data-type>
+      </column>
+      <index id="59" parent="11" name="diarycomment_pkey">
+        <object-id>49695</object-id>
+        <columns>diarycomment_id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="60" parent="11" name="diarycomment_pkey">
+        <columns>diarycomment_id</columns>
+        <underlying-index>diarycomment_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="61" parent="11" name="diarycomment_diary_id_fkey">
+        <columns>diary_id</columns>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="62" parent="11" name="diarycomment_user_id_fkey">
+        <columns>user_id</columns>
+        <ref-key>~.usertable.usertable_pkey</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+>>>>>>> 112010fb09a177b24ad2429dea684651732dfa5d
       <column id="63" parent="12" name="userid">
         <state-number>8967</state-number>
         <mandatory>1</mandatory>
@@ -329,13 +417,11 @@ friendid</columns>
       </key>
       <foreign-key id="69" parent="12" name="friendship_userid_fkey">
         <columns>userid</columns>
-        <ref-key>~.userinfo.userinfo_pkey</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
       <foreign-key id="70" parent="12" name="friendship_friendid_fkey">
         <columns>friendid</columns>
-        <ref-key>~.userinfo.userinfo_pkey</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -381,11 +467,19 @@ friendid</columns>
       <column id="79" parent="14" name="multimedia_id">
         <state-number>18392</state-number>
         <data-type>bigint</data-type>
+<<<<<<< HEAD
       </column>
       <column id="80" parent="14" name="user_id">
         <state-number>18392</state-number>
         <data-type>bigint</data-type>
       </column>
+=======
+      </column>
+      <column id="80" parent="14" name="user_id">
+        <state-number>18392</state-number>
+        <data-type>bigint</data-type>
+      </column>
+>>>>>>> 112010fb09a177b24ad2429dea684651732dfa5d
       <column id="81" parent="14" name="content">
         <state-number>18392</state-number>
         <data-type>text</data-type>
@@ -474,12 +568,21 @@ friendid</columns>
         <data-type>char(10)</data-type>
       </column>
       <column id="98" parent="16" name="phone">
+<<<<<<< HEAD
         <state-number>8967</state-number>
         <data-type>char(10)</data-type>
       </column>
       <column id="99" parent="16" name="hobby">
         <state-number>8967</state-number>
         <data-type>varchar(30)</data-type>
+=======
+        <state-number>19006</state-number>
+        <data-type>text</data-type>
+      </column>
+      <column id="99" parent="16" name="hobby">
+        <state-number>19005</state-number>
+        <data-type>text</data-type>
+>>>>>>> 112010fb09a177b24ad2429dea684651732dfa5d
       </column>
       <column id="100" parent="16" name="ptime">
         <state-number>8967</state-number>

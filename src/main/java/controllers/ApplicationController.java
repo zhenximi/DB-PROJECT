@@ -18,6 +18,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import models.*;
 import ninja.Result;
 import ninja.Results;
 
@@ -27,6 +28,7 @@ import dao.RelationshipDao;
 import dao.UserTableDao;
 import dao.PostDao;
 import dao.CommentDao;
+import dao.DiaryDao;
 import etc.Globals;
 import etc.PostType;
 import etc.RelationType;
@@ -39,11 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import models.Comment;
-import models.Post;
-import models.Relationship;
-import models.UserTable;
-import models.User_session;
+
 import ninja.Context;
 import ninja.FilterWith;
 import ninja.params.Param;
@@ -61,6 +59,7 @@ public class ApplicationController {
     @Inject RelationshipDao relationshipDao;
     @Inject PostDao postDao;
     @Inject CommentDao commentDao;
+    @Inject DiaryDao diaryDao;
     @Inject MailController mailController;
 
     @FilterWith(LoginFilter.class)
@@ -93,6 +92,9 @@ public class ApplicationController {
         html.render("comments", comments);
         html.render("friends", mutualFriends);
 
+        List<Diary> diarys = diaryDao.getDiaryFromUsers(mutualFriends);
+
+        html.render("diarys", diarys);
         return html;
     }
 
@@ -351,7 +353,9 @@ public class ApplicationController {
 
         List<Post> postResult = postDao.getPostFromKeyword(keyword);
 
+        List<Diary> diary = diaryDao.getDiaryFromKeyword(keyword);
         // HTML Rendering stuff
+        html.render("diary",diary);
         html.render("user", actualUser);
         html.render("friends", mutualFriends);
         html.render("userResult", userResult);
@@ -369,11 +373,32 @@ public class ApplicationController {
         //UserTable targetUser = userTableDao.getUserFromUsername(post);
         List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
         //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
+
         Post post = postDao.getPostFromSearchResult(postid);
-
-
+        //List<Comment> comments
+        List<Comment> comments = commentDao.getCommentsBySearchresult(post);
+        html.render("comments", comments);
         html.render("user", actualUser);
         html.render("post", post);
+        html.render("friends", mutualFriends);
+
+        return html;
+    }
+    @FilterWith(LoginFilter.class)
+    public Result showdiary(@PathParam("diaryid") Long diary_id, Context context) {
+        // Initial declarations
+        Result html = Results.html();
+
+        UserTable actualUser = userTableDao.getUserFromSession(context);
+        //UserTable targetUser = userTableDao.getUserFromUsername(post);
+        List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
+
+        Diary diary = diaryDao.getDiaryFromSearchResult(diary_id);
+
+        html.render("diary", diary);
+        html.render("user", actualUser);
+
         html.render("friends", mutualFriends);
 
         return html;

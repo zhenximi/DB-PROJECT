@@ -62,4 +62,24 @@
 </div>
 </#list>
 
+
+    <#list diarys as diary>
+        <div class="panel panel-primary" style="padding: 1%;">
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: left;">
+                        <h1>${diary.title}</h1>
+                        <h4>${diary.content}</h4>
+
+
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${diary.timestamp}
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </#list>
+
 </@layout.myLayout>

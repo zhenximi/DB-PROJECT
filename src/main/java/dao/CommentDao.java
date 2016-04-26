@@ -42,4 +42,28 @@ public class CommentDao {
         }
         return null;
     }
+    public List<Comment> getCommentsBySearchresult(Post post){
+
+            EntityManager em = EntityManagerProvider.get();
+            // Get all comments from post
+            // --------------------------
+            // Create a query for comments by post IDs, the result should be something like
+            // "SELECT * FROM Comment WHERE post_id IN ('8', '7', '3', '2', '1', '6')"
+            //
+
+            List<Comment> comments = new ArrayList<Comment>();
+            String strQuery = "SELECT x FROM Comment x WHERE post_id IN (";
+
+                strQuery += "'" + post.getId().toString() + "'";
+
+
+
+            strQuery += ") ORDER BY timestamp DESC";
+
+            Query q = em.createQuery(strQuery);
+            comments = (List<Comment>) q.getResultList();
+
+            return comments;
+
+    }
 }

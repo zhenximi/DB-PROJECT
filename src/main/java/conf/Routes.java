@@ -52,6 +52,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/search").with(ApplicationController.class, "search_result");   //search
         router.GET().route("/profile/post_view/{postid}").with(ApplicationController.class, "post_view");
 
+        router.GET().route("/diary/{diaryid}").with(ApplicationController.class, "showdiary");
         ///////////////////////////////////////////////////////////////////////
         // Assets (pictures / javascript)
         ///////////////////////////////////////////////////////////////////////

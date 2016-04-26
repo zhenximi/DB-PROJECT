@@ -2,17 +2,37 @@
     <@layout.myLayout "Home page">
 
 
-    <div class="panel panel-primary" style="padding: 1%;">
-        <div class="panel-body" style="display: inline-block; padding: 10px;">
-            <div class="media">
-                <div class="media-middle" style="text-align: left;">
-                        <h4>${post.content}</h4>
-                    </a>
-                    <p>${post.timestamp}</p>
+
+        <div class="panel panel-primary" style="padding: 1%;">
+            <div class="panel-body" style="display: inline-block; padding: 10px;">
+                <div class="media">
+                    <div class="media-middle" style="text-align: left;">
+
+                            <h4>${post.content}</h4>
+
+
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> ${post.timestamp}
+                        <#list comments as comment>
+                            <#if comment.post_id == post.id>
+                                <div class="media">
+                                    <div class="media-left media-middle">
+                                        <a href="/profile/view/${comment.author.username}">
+                                            <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>${comment.author.full_name}</h4>
+                                        <p>${comment.content}</p>
+                                    </div>
+                                </div>
+                            </#if>
+                        </#list>
+                    </div>
+
                 </div>
             </div>
+
         </div>
 
-    </div>
 
 </@layout.myLayout>

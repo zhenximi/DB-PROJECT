@@ -52,7 +52,7 @@
                     <div class="list-group hidden-xs">
                         <#list friends as friend>
                             <#if friend.id != user.id>
-                                <a href="/profile/view/${friend.username}" class="list-group-item">
+                                <a href="/profile/view/${friend.id}" class="list-group-item">
                                     <div class="media">
                                         <div class="media-left media-middle">
                                             <img class="media-object img-rounded avatar-48" src="/assets/img/general/icon-profile.png" alt="Profile picture">

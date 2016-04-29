@@ -404,4 +404,52 @@ public class ApplicationController {
         return html;
     }
 
+    @Transactional
+    @FilterWith(LoginFilter.class)
+    public Result diary_create (@Param("content") String content, @Param("title")String title, Context context) {
+        //System.out.print("BEGINING test");
+        Result html = Results.html();
+        //Relationship relationship = relationshipDao.getRelationByUsername(actualUser, targetUser);
+
+        Session session = context.getSession();
+        EntityManager em = EntityManagerProvider.get();
+        UserTable actualUser = userTableDao.getUserFromSession(context);
+        //System.out.print("actual User");
+        Diary newDiary= new Diary(actualUser,content, title ,new Timestamp(new Date().getTime()));
+        em.persist(newDiary);
+        List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        Diary diary = diaryDao.getDiaryFromSearchResult(newDiary.getId());
+        //System.out.print("TEST, timestamp: " + newPost.getTimestamp());
+
+
+        html.render("diary", diary);
+        html.render("user", actualUser);
+
+        html.render("friends", mutualFriends);
+
+        return html;
+    }
+
+    //@Transactional
+    @FilterWith(LoginFilter.class)
+    public Result diary_create_view (Context context) {
+        Result html = Results.html();
+        EntityManager em = EntityManagerProvider.get();
+        Session session = context.getSession();
+
+        // Temporal vars
+        // -------------
+        UserTable actualUser = userTableDao.getUserFromSession(context);
+
+        // Get mutual friend list
+        List<UserTable> mutualFriends = relationshipDao.getRelationList(actualUser, RelationType.Friends);
+        mutualFriends.add(actualUser);
+
+        html.render("user", actualUser);
+        html.render("friends", mutualFriends);
+
+        return html;
+    }
+
+
 }

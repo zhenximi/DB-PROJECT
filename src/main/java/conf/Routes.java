@@ -61,6 +61,8 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController.class, "serveWebJars");
         router.GET().route("/assets/{fileName: .*}").with(AssetsController.class, "serveStatic");
 
+        router.GET().route("/diary_create_view").with(ApplicationController.class, "diary_create_view");
+        router.POST().route("/diary_create").with(ApplicationController.class, "diary_create");
 
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page

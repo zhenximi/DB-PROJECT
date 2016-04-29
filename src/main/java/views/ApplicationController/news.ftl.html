@@ -7,8 +7,10 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="What's on your mind?" name="content">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></button>
-                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                    <a href="diary_create_view">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></button>
+                    </a>
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
                 </span>
             </div>
         </form>
@@ -68,7 +70,9 @@
             <div class="panel-body" style="display: inline-block; padding: 10px;">
                 <div class="media">
                     <div class="media-middle" style="text-align: left;">
-                        <h1>${diary.title}</h1>
+                        <a href="/diary/${diary.id}">
+                            <h3>${diary.title}</h3>
+                        </a>
                         <h4>${diary.content}</h4>
 
 

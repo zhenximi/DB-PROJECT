@@ -25,7 +25,7 @@ public class Diary {
     public Diary(){}
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "diary_id")
     public Long getId() {
         return id;

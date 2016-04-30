@@ -7,7 +7,6 @@
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/src/main/java/META-INF/persistence.xml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://pdc-amd01.poly.edu:5432/xc761</jdbc-url>
       <explain-plan-config>
         <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
       </explain-plan-config>

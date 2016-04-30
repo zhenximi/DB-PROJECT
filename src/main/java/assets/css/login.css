@@ -1,0 +1,294 @@
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+#bg, #overlay {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+html {
+    overflow-y: auto
+}
+
+.clearfix:after {
+    clear: both
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+#bg, #overlay {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+@media only screen and (min-height: 990px) {
+    #overlay .content {
+        margin: 188px auto 50px;
+    }
+}
+
+@media only screen and (min-height: 901px) {
+    #overlay .content {
+        margin: 100px auto 50px;
+    }
+}
+
+@media only screen and (min-height: 801px) {
+    #overlay .content {
+
+        margin: 70px auto 0;
+    }
+}
+
+#overlay .content {
+    -webkit-transition: top .5s ease;
+    transition: top .5s ease;
+    width: auto;
+    max-width: 600px;
+    display: block;
+    margin: 30px auto 0;
+}
+
+@media only screen and (min-height: 800px) {
+
+.enterprise-signup, .login-form, .password-reset-form, .request-reset-form, .signup-form {
+    padding: 80px 100px;
+}
+
+}
+.enterprise-signup, .login-form, .password-reset-form, .request-reset-form, .signup-form {
+    background: #fff;
+    border-radius: 3px;
+    padding: 60px 100px;
+}
+
+header.circle-logo {
+    border-radius: 100%;
+    border: solid 5px #9400FF;
+    margin: 0 auto 55px;
+    height: 102px;
+    width: 102px;
+}
+
+header.circle-logo span {
+    background: url(/assets/img/general/t.png) no-repeat;
+    overflow: hidden;
+    display: block;
+    height: 80px;
+    position: relative;
+    top: 13px;
+    left: 27px;
+    background-size: contain;
+}
+
+@media only screen and (min-height: 800px){
+    #overlay .content .login-title {
+        padding: 0 0 20px;
+    }
+}
+#overlay .content .login-title {
+    padding: 0;
+}
+
+.login-title {
+    padding: 32px 0 20px;
+    text-align: center;
+    font: 400 23px 'Open Sans';
+    color: #1E2431;
+    margin: 0;
+}
+
+.enterprise-signup form, .login-form form, .password-reset-form form, .request-reset-form form, .signup-form form {
+    margin: 0 0 13px;
+}
+
+.input-layout {
+    position: relative;
+    margin-top: 44px
+}
+.input-layout label {
+    color: #b8b5bd;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: .5px;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 2px;
+    -webkit-transition: .2s ease all;
+    transition: .2s ease all
+}
+.input-layout input[type=text], .input-layout input[type=password] {
+    font-weight: 400;
+    font-size: 18px;
+    color: #1E2431;
+    border: 0;
+    width: 100%;
+    height: 26px;
+    padding: 5px 0 13px 2px;
+    border-bottom: 1px solid #dadee6;
+    box-shadow: none;
+    -webkit-transition: none;
+    transition: none;
+    border-radius: 0
+}
+.input-layout input[type=text]:focus~label, .input-layout input[type=text]:valid~label, .input-layout input[type=password]:focus~label, .input-layout input[type=password]:valid~label {
+    top: -30px;
+    color: #A2AABD;
+    opacity: 1;
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: uppercase
+}
+.input-layout input[type=text]:focus:not([readonly])~label, .input-layout input[type=password]:focus:not([readonly])~label {
+    color: #FF6291;
+    font-weight: 400
+}
+.input-layout input[type=text]:focus:required:invalid:focus, .input-layout input[type=password]:focus:required:invalid:focus {
+    box-shadow: none
+}
+.input-layout input[type=text].error, .input-layout input[type=password].error {
+    border-bottom-color: #DD2B00;
+    border-bottom-width: 2px;
+    border-radius: 0
+}
+.input-layout input[type=password] {
+    font-weight: 600;
+    font-size: 21px;
+    font-family: arial;
+    letter-spacing: 5px;
+    padding: 6px 0 11px
+}
+.input-layout input[type=password]:active, .input-layout input[type=password]:focus {
+    outline: 0;
+    border: none;
+    text-transform: none
+}
+.input-layout input[type=text]:active, .input-layout input[type=text]:focus {
+    outline: 0;
+    padding-left: 0;
+    text-transform: none;
+    color: #1E2431;
+    font-size: 18px
+}
+.input-layout .alert-danger, .input-layout .alert-error {
+    background-color: transparent;
+    border-color: transparent;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    color: #DD2B00;
+    padding: 0;
+    margin: 0;
+    border-radius: 0
+}
+.input-layout .alert-danger a, .input-layout .alert-error a {
+    color: #DD2B00;
+    text-decoration: underline
+}
+.input-layout .alert-email, .input-layout .alert-name, .input-layout .alert-password, .input-layout .alert-passwordConfirmation {
+    display: none
+}
+.input-layout .alert-dynamic {
+    padding-bottom: 20px
+}
+.input-layout .bar {
+    position: relative;
+    display: block;
+    width: 100%
+}
+.input-layout .bar:after, .input-layout .bar:before {
+    content: '';
+    height: 1px;
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #FF6291;
+    -webkit-transition: .2s ease all;
+    transition: .2s ease all
+}
+.input-layout .bar:before {
+    left: 50%
+}
+.input-layout .bar:after {
+    right: 50%
+}
+.input-layout input:focus~.bar:after, .input-layout input:focus~.bar:before {
+    width: 50%
+}
+.input-layout .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: .5
+}
+.input-layout input:focus~.highlight {
+    -webkit-animation: inputHighlighter .3s ease;
+    animation: inputHighlighter .3s ease
+}
+.input-layout .alert-email, .input-layout .alert-name, .input-layout .alert-password, .input-layout .alert-passwordConfirmation {
+    display: none;
+}
+.input-layout .alert-danger, .input-layout .alert-error {
+    background-color: transparent;
+    border-color: transparent;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    color: #DD2B00;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+
+.saml-button .primary.button, footer .primary.button {
+    margin: 55px 0 0;
+    padding: 23px 0;
+    color: #fff;
+    background: #FF6291;
+    border-radius: 3px;
+    border: none;
+    width: 100%;
+    font: 400 12px/1em 'Open Sans';
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.saml-button .primary.button:hover, footer .primary.button:hover {
+    background: #ff0040
+}
+
+.secondary.button, footer .secondary.button {
+    margin: 55px 0 0;
+    padding: 23px 0;
+    color: #FF6291;
+    background: #fff;
+    border-radius: 3px;
+    border: solid 1px #FF6291;
+    width: 100%;
+    font: 400 12px/1em 'Open Sans';
+    -webkit-transition: all .2s linear;
+    transition: all .2s linear;
+}
+#overlay .enterprise .optional-login, .saml-button .primary.button, footer .primary.button,footer .second.button {
+    letter-spacing: .9px;
+    text-align: center;
+    box-shadow: none;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+.modal-body {
+    padding: 110px;
+}

@@ -35,8 +35,6 @@ public class MailController {
         mail.addHeader("header2", "value2");
 
         mail.addTo("zhenxi.mi@gmail.com");
-        mail.addTo("oliviachenxi@gmail.com");
-        mail.addTo("ls4162@nyu.edu");
 
 
 //        mail.addCc("cc1@domain");

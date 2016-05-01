@@ -71,6 +71,7 @@ $(document).ready(
                 data: $('#form_register').serialize(),
                 success: function(data){
                     $('#signupModal').modal('show');
+                    window.location.replace("/register");
                 }
             });
         });

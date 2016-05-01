@@ -1,0 +1,30 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+    <@layout.myLayout "Home page">
+
+    <div class="panel panel-primary panel-shadow">
+        <div class="panel-body">
+            <img class="img-responsive img-circle center-block" src="/assets/img/general/icon-profile.png" alt="Profile picture">
+            <h2 class="text-center">
+                ${user.full_name}
+            </h2>
+            <h6 class="text-center">
+                ${user.status}
+            </h6>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-body">
+                    <h2>${profile.birthday}</h2>
+                    <h3>${profile.gender}</h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</@layout.myLayout>

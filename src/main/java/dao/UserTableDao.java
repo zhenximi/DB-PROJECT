@@ -22,6 +22,21 @@ public class UserTableDao {
     Provider<EntityManager> EntityManagerProvider;
 
     @Transactional
+    public Boolean emailExist(String email) {
+        if(email != null) {
+            EntityManager em = EntityManagerProvider.get();
+            Query q = em.createQuery("SELECT x FROM UserTable x WHERE  email = :emailParam");
+            List<UserTable> user = (List<UserTable>) q.setParameter("emailParam", email).getResultList();
+            if (user.size() != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return null;
+    }
+
+    @Transactional
     public UserTable canLogin(String email, String password) {
         if(email != null && password != null) {
             EntityManager em = EntityManagerProvider.get();

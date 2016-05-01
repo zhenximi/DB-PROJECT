@@ -44,7 +44,7 @@ public class Routes implements ApplicationRoutes {
         router.GET().route("/profile").with(ApplicationController.class, "profile");
         router.POST().route("/profile/set").with(ApplicationController.class, "profile_set");
 
-        router.GET().route("/profile/view/{profile}").with(ApplicationController.class, "profile_view");
+        router.GET().route("/profile/view/{userid}").with(ApplicationController.class, "profile_view");
 
         router.GET().route("/friends/add/{username}").with(ApplicationController.class, "friend_add");
         router.GET().route("/friends/accept/{relid}").with(ApplicationController.class, "friend_accept");
@@ -63,6 +63,10 @@ public class Routes implements ApplicationRoutes {
 
         router.GET().route("/diary_create_view").with(ApplicationController.class, "diary_create_view");
         router.POST().route("/diary_create").with(ApplicationController.class, "diary_create");
+        router.POST().route("/profile_create").with(ApplicationController.class, "profile_create");
+
+        router.GET().route("/self_profile_view").with(ApplicationController.class, "self_profile_view");
+
 
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page

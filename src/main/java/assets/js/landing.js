@@ -59,3 +59,20 @@ $(document).ready(function () {
     Register_input_password2.keyup(Check_form);
     Register_input_eula.change(Check_form);
 });
+
+
+$(document).ready(
+    function(){
+        $('#form_register').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: "/register", //this is the submit URL
+                type: 'POST', //or POST
+                data: $('#form_register').serialize(),
+                success: function(data){
+                    $('#signupModal').modal('show');
+                }
+            });
+        });
+    }
+);
